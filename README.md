@@ -74,8 +74,6 @@ torch_dtype = torch.float16 if torch.cuda.is_available() else "cpu" # Changed fl
 sample_rate = 16000
 duration = 5 # seconds
 dummy_audio = torch.randn(1, sample_rate * duration).numpy() # Example: 5 seconds of random noise
-
-
 processor = AutoProcessor.from_pretrained(model_id)
 model = AutoModelForSpeechSeq2Seq.from_pretrained(
     model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True, use_safetensors=True
@@ -94,13 +92,6 @@ predicted_ids = model.generate(input_features)
 transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
 
 print(f"Transcription: {transcription}")
-
-# Example for a real audio file (uncomment and replace path):
-# audio, sampling_rate = librosa.load("path/to/your/indian_accent_audio.wav", sr=16000)
-# input_features = processor(audio, sampling_rate=sampling_rate, return_tensors="pt").input_features.to(device)
-# predicted_ids = model.generate(input_features)
-# transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
-# print(f"Transcription: {transcription}")
 
 🙏 Attribution
 If you use this model in your research, projects, or applications, please ensure you provide appropriate credit to the original creators, as required by the CC BY 4.0 license.

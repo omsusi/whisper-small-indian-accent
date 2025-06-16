@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this model, please cite it as below."
+authors:
+  - family-names: "Singha"
+    given-names: "Omsubhra"
+  - family-names: "Kumar"
+    given-names: "Aman" 
+title: "Whisper Small Model (Indian Accent)"
+version: "1.0.0"
+date-released: "2025-06-16" # Current date (YYYY-MM-DD)
+repository-code: "https://github.com/your-github-username/your-repo-name" # IMPORTANT: Replace with your actual GitHub URL later
+keywords:
+  - "whisper"
+  - "speech recognition"
+  - "indian accent"
+  - "fine-tuned model"
+  - "ai"
+  - "machine learning"
+license: "CC-BY-4.0" # Official SPDX identifier for Creative Commons Attribution 4.0

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Machine Learning related temporary files/logs
+checkpoints/
+runs/
+logs/
+
+# Jupyter Notebook related files
+.ipynb_checkpoints/

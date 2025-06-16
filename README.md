@@ -16,11 +16,6 @@ Sample Dataset Download: https://github.com/AI4Bharat/NPTEL2020-Indian-English-S
 
 Dataset Description: The NPTEL-2020 dataset comprises speech from lectures delivered by Indian professors, providing a valuable source of Indian English speech.
 
-Training Environment
-[Optional: Briefly mention the hardware used, e.g., "Fine-tuned on Google Colab Pro+ GPU (A100)" or "Trained on a custom GPU setup with NVIDIA RTX 3090."]
-
-[Optional: Briefly mention libraries or frameworks used, e.g., "Developed using Hugging Face Transformers and PyTorch."]
-
 ✨ Performance
 Our custom-trained Whisper-small model significantly outperforms the pre-trained Whisper-small model on a custom validation dataset. The substantial reduction in both Word Error Rate (WER) and Character Error Rate (CER) demonstrates the effectiveness of domain-specific fine-tuning for Indian English accents.
 
@@ -71,12 +66,7 @@ You can load the model directly from this GitHub repository (once uploaded) or f
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 import torch
 import librosa # You might need to pip install librosa
-
-# Specify the model ID (replace with your actual GitHub/Hugging Face path)
-# After uploading to GitHub, this would be:
-model_id = "your-github-username/whisper-small-indian-accent"
-# If you also upload to Hugging Face Hub (highly recommended for ML models):
-# model_id = "your-huggingface-username/whisper-small-indian-accent"
+model_id = "omsusi/whisper-small-indian-accent"
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else "cpu" # Changed float32 to cpu for consistency

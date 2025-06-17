@@ -16,11 +16,6 @@ Sample Dataset Download: https://github.com/AI4Bharat/NPTEL2020-Indian-English-S
 
 Dataset Description: The NPTEL-2020 dataset comprises speech from lectures delivered by Indian professors, providing a valuable source of Indian English speech.
 
-Training Environment
-[Optional: Briefly mention the hardware used, e.g., "Fine-tuned on Google Colab Pro+ GPU (A100)" or "Trained on a custom GPU setup with NVIDIA RTX 3090."]
-
-[Optional: Briefly mention libraries or frameworks used, e.g., "Developed using Hugging Face Transformers and PyTorch."]
-
 ✨ Performance
 Our custom-trained Whisper-small model significantly outperforms the pre-trained Whisper-small model on a custom validation dataset. The substantial reduction in both Word Error Rate (WER) and Character Error Rate (CER) demonstrates the effectiveness of domain-specific fine-tuning for Indian English accents.
 
@@ -71,12 +66,7 @@ You can load the model directly from this GitHub repository (once uploaded) or f
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 import torch
 import librosa # You might need to pip install librosa
-
-# Specify the model ID (replace with your actual GitHub/Hugging Face path)
-# After uploading to GitHub, this would be:
-model_id = "your-github-username/whisper-small-indian-accent"
-# If you also upload to Hugging Face Hub (highly recommended for ML models):
-# model_id = "your-huggingface-username/whisper-small-indian-accent"
+model_id = "omsusi/whisper-small-indian-accent"
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else "cpu" # Changed float32 to cpu for consistency
@@ -84,8 +74,6 @@ torch_dtype = torch.float16 if torch.cuda.is_available() else "cpu" # Changed fl
 sample_rate = 16000
 duration = 5 # seconds
 dummy_audio = torch.randn(1, sample_rate * duration).numpy() # Example: 5 seconds of random noise
-
-
 processor = AutoProcessor.from_pretrained(model_id)
 model = AutoModelForSpeechSeq2Seq.from_pretrained(
     model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True, use_safetensors=True
@@ -104,13 +92,6 @@ predicted_ids = model.generate(input_features)
 transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
 
 print(f"Transcription: {transcription}")
-
-# Example for a real audio file (uncomment and replace path):
-# audio, sampling_rate = librosa.load("path/to/your/indian_accent_audio.wav", sr=16000)
-# input_features = processor(audio, sampling_rate=sampling_rate, return_tensors="pt").input_features.to(device)
-# predicted_ids = model.generate(input_features)
-# transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
-# print(f"Transcription: {transcription}")
 
 🙏 Attribution
 If you use this model in your research, projects, or applications, please ensure you provide appropriate credit to the original creators, as required by the CC BY 4.0 license.

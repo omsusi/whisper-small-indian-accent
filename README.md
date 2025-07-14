@@ -22,21 +22,17 @@ Our custom-trained Whisper-small model significantly outperforms the pre-trained
 Evaluation Results on Custom Validation Dataset
 Model
 
-WER (Word Error Rate)
-
-CER (Character Error Rate)
-
 Pre-trained Whisper-small
 
-32.1
+WER (Word Error Rate) : 32.1
 
-12.3
+CER (Character Error Rate) : 12.3
 
 Custom-trained Whisper-small
 
-15.6
+WER (Word Error Rate) : 15.6
 
-7.8
+CER (Character Error Rate) : 7.8
 
 Custom Dataset Used for Testing
 To validate the model's performance on realistic Indian English speech, we used a custom dataset comprising our own voices.
@@ -113,6 +109,7 @@ Citing the model using the information provided in the CITATION.cff file (if app
 Your adherence to these attribution requirements, as per the CC BY 4.0 license, is greatly appreciated.
 
 📜 License
+
 This Whisper Small Model (Indian Accent) is distributed under the Creative Commons Attribution 4.0 International Public License (CC BY 4.0).
 
 You are free to:

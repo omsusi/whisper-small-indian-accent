@@ -11,8 +11,6 @@ Model Weights Format: safetensors (for improved security and loading speed)
 
 📊 Training Details
 
-Dataset Used for Training
-
 Due to resource constraints (the full Opus version being ~100GB and not feasible for free Google Colab training), we utilized a sampled subset of the NPTEL-2020 Indian English Speech Dataset.
 
 Sample Dataset Download: https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/releases/download/v0.1/nptel-pure-set.tar.gz

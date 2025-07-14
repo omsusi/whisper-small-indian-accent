@@ -2,6 +2,7 @@ Whisper Small Model - Indian Accent
 This repository hosts a fine-tuned version of OpenAI's Whisper Small model, specifically adapted for improved speech recognition of Indian English accents. This model aims to provide higher accuracy for transcribing audio that contains the unique phonetic and linguistic characteristics of Indian English speech.
 
 🚀 Model Details
+
 Base Model: OpenAI Whisper Small
 
 Fine-tuning Objective: Enhanced transcription accuracy for Indian English.
@@ -9,7 +10,9 @@ Fine-tuning Objective: Enhanced transcription accuracy for Indian English.
 Model Weights Format: safetensors (for improved security and loading speed)
 
 📊 Training Details
+
 Dataset Used for Training
+
 Due to resource constraints (the full Opus version being ~100GB and not feasible for free Google Colab training), we utilized a sampled subset of the NPTEL-2020 Indian English Speech Dataset.
 
 Sample Dataset Download: https://github.com/AI4Bharat/NPTEL2020-Indian-English-Speech-Dataset/releases/download/v0.1/nptel-pure-set.tar.gz
@@ -17,10 +20,12 @@ Sample Dataset Download: https://github.com/AI4Bharat/NPTEL2020-Indian-English-S
 Dataset Description: The NPTEL-2020 dataset comprises speech from lectures delivered by Indian professors, providing a valuable source of Indian English speech.
 
 ✨ Performance
+
 Our custom-trained Whisper-small model significantly outperforms the pre-trained Whisper-small model on a custom validation dataset. The substantial reduction in both Word Error Rate (WER) and Character Error Rate (CER) demonstrates the effectiveness of domain-specific fine-tuning for Indian English accents.
 
 Evaluation Results on Custom Validation Dataset
-Model
+
+Model(s):
 
 Pre-trained Whisper-small
 
@@ -35,6 +40,7 @@ WER (Word Error Rate) : 15.6
 CER (Character Error Rate) : 7.8
 
 Custom Dataset Used for Testing
+
 To validate the model's performance on realistic Indian English speech, we used a custom dataset comprising our own voices.
 
 Custom Audio Data: https://drive.google.com/drive/folders/1bKVak_v3T-qtyEzdIY7AkDQ57ap18J2o?usp=sharing
@@ -42,11 +48,13 @@ Custom Audio Data: https://drive.google.com/drive/folders/1bKVak_v3T-qtyEzdIY7Ak
 Required JSON File for Testing: https://drive.google.com/file/d/1bX1sjeRVEVhqoWwfVYm-IEE7K-v-AevR/view?usp=sharing
 
 Testing Colab Notebook
+
 You can reproduce our testing and evaluate the model's performance yourself using the following Google Colab notebook:
 
 Colab Notebook: https://colab.research.google.com/drive/1zcL9dbifU2ZenJIjYOeSVkOwheB_u281?usp=sharing
 
 🛠️ Usage
+
 This model can be easily loaded and used with the Hugging Face transformers library.
 
 1. Installation:
@@ -60,17 +68,26 @@ pip install transformers accelerate safetensors datasets soundfile # Or just pip
 You can load the model directly from this GitHub repository (once uploaded) or from its corresponding Hugging Face Hub page.
 
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
+
 import torch
+
 import librosa # You might need to pip install librosa
+
 model_id = "omsusi/whisper-small-indian-accent"
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
+
 torch_dtype = torch.float16 if torch.cuda.is_available() else "cpu" # Changed float32 to cpu for consistency
+
 # Make sure your audio is sampled at 16kHz
 sample_rate = 16000
+
 duration = 5 # seconds
+
 dummy_audio = torch.randn(1, sample_rate * duration).numpy() # Example: 5 seconds of random noise
+
 processor = AutoProcessor.from_pretrained(model_id)
+
 model = AutoModelForSpeechSeq2Seq.from_pretrained(
     model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True, use_safetensors=True
 ).to(device)
@@ -85,11 +102,13 @@ input_features = processor(
 
 # Generate transcription
 predicted_ids = model.generate(input_features)
+
 transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
 
 print(f"Transcription: {transcription}")
 
 🙏 Attribution
+
 If you use this model in your research, projects, or applications, please ensure you provide appropriate credit to the original creators, as required by the CC BY 4.0 license.
 
 This includes:
@@ -125,4 +144,5 @@ Attribution — You must give appropriate credit, provide a link to the license,
 For the full text of the license, please see the LICENSE file in this repository or visit: https://creativecommons.org/licenses/by/4.0/
 
 📞 Contact
+
 For questions or inquiries, please open an issue in this repository or contact https://www.linkedin.com/in/omsubhra-singha-30447a254/ and amnkmr2098@gmail.com.
